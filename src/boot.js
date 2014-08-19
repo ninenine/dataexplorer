@@ -1,8 +1,9 @@
 this.DataExplorer = this.DataExplorer || {};
 this.DataExplorer.app = {
     config: {
-      gatekeeper_url: 'http://transformer-gatekeeper.herokuapp.com',
-      oauth_client_id: '2bab62e2f6b27c3ebe1f'
+      github_tokken_url: 'https://github.com/login/oauth/access_token/',
+      oauth_client_id: '2fe41ff9ce89f6e7fbed',
+      oauth_client_secret: 'dbaf5ad7f84906d29d127a181999d2c3e6deef4a'
     },
     models: {},
     views: {},
@@ -82,8 +83,8 @@ window.args = _(this.DataExplorer.app).toArray();
     $('.navbar').hide();
     $('#main').html(html);
     // complete the login process
-    $.getJSON(DataExplorer.app.config.gatekeeper_url + '/authenticate/'+match[1], function(data) {
-      window.opener.postMessage({token: data.token}, window.location);
+     $.getJSON(DataExplorer.app.config.github_tokken_url ,{client_id:DataExplorer.app.config.oauth_client_id ,client_secret:DataExplorer.app.config.oauth_client_secret,code:match[1]}, function(data) {
+      window.opener.postMessage({token: data.access_token}, window.location);
       window.close();
     });
   };
