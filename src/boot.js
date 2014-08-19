@@ -76,15 +76,20 @@ window.args = _(this.DataExplorer.app) .toArray();
     $('#main') .html(html);
     // complete the login process
     console.log('complete the login process');
-    $.getJSON('https://github.com/login/oauth/access_token/', {
-      client_id: DataExplorer.app.config.oauth_client_id,
-      client_secret: DataExplorer.app.config.oauth_client_secret,
-      code: match[1]
-    }, function (data) {
-      console.log(data);
+    $.ajax({
+      type: 'POST',
+      url: 'https://github.com/login/oauth/access_token',
+      dataType: 'json',
+      data: {
+        client_id: DataExplorer.app.config.oauth_client_id,
+        client_secret: DataExplorer.app.config.oauth_client_secret,
+        code: match[1]
+      }
+    }) .done(function (data) {
       window.opener.postMessage({
         token: data.access_token
       }, window.location);
+      console.log('doing it');
       window.close();
     });
     console.log('done!');
