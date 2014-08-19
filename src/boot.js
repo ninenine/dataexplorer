@@ -75,15 +75,18 @@ window.args = _(this.DataExplorer.app) .toArray();
     $('.navbar') .hide();
     $('#main') .html(html);
     // complete the login process
+    console.log('complete the login process');
     $.getJSON('https://github.com/login/oauth/access_token/', {
       client_id: DataExplorer.app.config.oauth_client_id,
       client_secret: DataExplorer.app.config.oauth_client_secret,
       code: match[1]
     }, function (data) {
+      console.log(data);
       window.opener.postMessage({
         token: data.access_token
       }, window.location);
       window.close();
     });
+    console.log('done!');
   };
 }) .apply(this, window.args);
