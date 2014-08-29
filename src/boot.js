@@ -93,7 +93,7 @@ window.args = _(this.DataExplorer.app) .toArray();
       console.log('doing it');
       window.close();
     }).fail(function(error) {
-      alert( "error:"+ error );
+      alert( "error:" + JSON.stringify(error) );
     });
     console.log('done!');
   };
