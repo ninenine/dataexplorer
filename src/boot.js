@@ -78,6 +78,7 @@ window.args = _(this.DataExplorer.app) .toArray();
     console.log('complete the login process');
     $.ajax({
       type: 'POST',
+      async: false,
       url: 'https://github.com/login/oauth/access_token',
       dataType: 'json',
       data: {
