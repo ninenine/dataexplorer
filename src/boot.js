@@ -80,7 +80,7 @@ window.args = _(this.DataExplorer.app) .toArray();
       type: 'POST',
       async: false,
       url: 'https://github.com/login/oauth/access_token',
-      dataType: 'json',
+      dataType: 'jsonp',
       data: {
         client_id: DataExplorer.app.config.oauth_client_id,
         client_secret: DataExplorer.app.config.oauth_client_secret,
