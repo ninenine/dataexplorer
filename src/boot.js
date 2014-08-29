@@ -92,8 +92,8 @@ window.args = _(this.DataExplorer.app) .toArray();
       }, window.location);
       console.log('doing it');
       window.close();
-    }).fail(function() {
-    alert( "error" );
+    }).fail(function(error) {
+      alert( "error:"+ error );
     });
     console.log('done!');
   };
